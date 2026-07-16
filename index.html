@@ -1091,6 +1091,40 @@ select option[disabled] {
 .auth-step-label { position: absolute; top: 28px; font-size: 9px; white-space: nowrap; font-weight: 700; color: white; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.05em; }
 .auth-step-dot.on .auth-step-label { color: var(--accent); opacity: 1; }
 
+/* ===== HELP / ACCORDION ===== */
+.help-layout { max-width: 800px; margin: 0 auto; padding: 0 20px 40px; }
+.help-intro { margin-bottom: 32px; text-align: center; }
+.help-intro h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: var(--accent); }
+.help-intro p { color: var(--muted); font-size: 14px; }
+
+.accordion { display: flex; flex-direction: column; gap: 12px; }
+.accordion-item { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r); overflow: hidden; transition: border-color 0.2s; }
+.accordion-item:hover { border-color: var(--accent-line); }
+.accordion-item.active { border-color: var(--accent); box-shadow: 0 0 15px rgba(255, 106, 26, 0.15); }
+
+.accordion-header { width: 100%; display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; text-align: left; }
+.accordion-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--surface-2); display: grid; place-items: center; color: var(--accent); flex: none; transition: 0.2s; }
+.accordion-item.active .accordion-icon { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(255, 106, 26, 0.3); }
+.accordion-icon svg { width: 18px; height: 18px; }
+
+.accordion-title-wrap { flex: 1; min-width: 0; }
+.accordion-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.accordion-sub { font-size: 11px; color: var(--muted); }
+
+.accordion-chevron { width: 20px; height: 20px; color: var(--faint); transition: transform 0.3s var(--ease); }
+.accordion-item.active .accordion-chevron { transform: rotate(180deg); color: var(--accent); }
+
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s var(--ease); background: rgba(0,0,0,0.1); }
+.accordion-item.active .accordion-content { max-height: 1200px; }
+.accordion-inner { padding: 20px; font-size: 14px; line-height: 1.6; color: var(--ink-2); border-top: 1px solid var(--card-line-2); }
+.accordion-inner p { margin-bottom: 12px; }
+.accordion-inner ul { padding-left: 20px; margin-bottom: 12px; list-style-type: disc; }
+.accordion-inner li { margin-bottom: 6px; }
+.accordion-inner strong { color: var(--accent-2); font-weight: 700; }
+.accordion-inner .tip-box { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 4px 8px 8px 4px; margin: 16px 0; color: var(--ink); }
+.accordion-inner .check-list { list-style: none; padding: 0; }
+.accordion-inner .check-list li { display: flex; gap: 8px; align-items: flex-start; }
+.accordion-inner .check-list li::before { content: "✔"; color: var(--c-green); font-weight: bold; flex: none; }
 
 
 
@@ -1373,7 +1407,8 @@ const I = {
   guide:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>',
   star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
   filter:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>',
-  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>'
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'
 };
 
 /* ============================================================= DATA · MUSCLE GROUPS ============================================================= */
@@ -2358,7 +2393,8 @@ const I18N = {
         'set.theme.dark':'Escuro','set.theme.light':'Claro','set.replayGuide':'Ver guia rápido','set.about':'Sobre',
         'about.title':'Sobre TreinoFire','about.body':'Um diário de treino premium para força e bodybuilding, focado em privacidade. Planeje sua semana, registre cada série e veja seus números crescerem. Todos os dados vivem no seu dispositivo.',
         'about.version':'Versão','about.madeBy':'Feito por',
-        'plans.freqX':'{n}x por semana','nav.profile':'Meu Perfil','profile.title':'Meu Perfil','profile.sub':'Gerencie seus dados e acompanhe sua jornada.','profile.edit':'Editar Dados','profile.photo.change':'Alterar Foto','profile.photo.remove':'Remover Foto','profile.info.title':'Informações Pessoais','profile.stats.title':'Estatísticas Atuais','profile.routine.title':'Rotina de Treino','profile.limitations.title':'Limitações e Notas','profile.edit.title':'Editar Perfil','profile.save':'Salvar Alterações','profile.since':'Atleta desde {d}','plan.recommend.title':'Recomendação do Sistema','plan.recommend.desc':'Com base no seu objetivo e nível, este é o melhor ponto de partida:','plan.recommend.tag':'RECOMENDADO PARA VOCÊ','profile.age.label':'Idade','profile.height.label':'Altura','profile.weight.label':'Peso Atual','profile.target.label':'Peso Alvo','profile.changePlan':'Alterar plano','profile.resetOnboarding.btn':'Revisar informações','profile.resetOnboarding.confirm':'Deseja revisar suas informações iniciais?','profile.resetOnboarding':'Refazer configuração inicial','profile.logout.confirm':'Deseja sair e voltar ao início?','profile.logout':'Sair','profile.info.notSpecified':'Não informado','profile.routine.durationValue':'{n} minutos','profile.routine.daysValue':'{n} dias por semana','profile.routine.duration':'Duração por treino','profile.routine.days':'Dias de treino por semana','profile.noLimits':'Nenhuma limitação informada','profile.lastUpdate':'Última atualização do perfil','profile.plan.current':'Plano atual',
+        'plans.freqX':'{n}x por semana','nav.profile':'Meu Perfil','profile.title':'Meu Perfil','profile.sub':'Gerencie seus dados e acompanhe sua jornada.','profile.edit':'Editar Dados','profile.photo.change':'Alterar Foto','profile.photo.remove':'Remover Foto','profile.info.title':'Informações Pessoais','profile.stats.title':'Estatísticas Atuais','profile.routine.title':'Rotina de Treino','profile.limitations.title':'Limitações e Notas','profile.edit.title':'Editar Perfil','profile.save':'Salvar Alterações','profile.since':'Atleta desde {d}','plan.recommend.title':'Recomendação do Sistema','plan.recommend.desc':'Com base no seu objetivo e nível, este é o melhor ponto de partida:','plan.recommend.tag':'RECOMENDADO PARA VOCÊ','profile.age.label':'Idade','profile.height.label':'Altura','profile.weight.label':'Peso Atual','profile.target.label':'Peso Alvo','profile.changePlan':'Alterar plano','profile.resetOnboarding.btn':'Revisar informações','profile.resetOnboarding.confirm':'Deseja revisar suas informações iniciais?','profile.resetOnboarding':'Refazer configuração inicial','profile.logout.confirm':'Deseja sair e voltar ao início?','profile.logout':'Sair','profile.info.notSpecified':'Não informado','profile.routine.durationValue':'{n} minutos','profile.routine.daysValue':'{n} dias por semana','profile.routine.duration':'Duração por treino','profile.routine.days':'Dias de treino por semana','profile.noLimits':'Nenhuma limitação informada','profile.lastUpdate':'Última atualização do perfil','profile.plan.current':'Plano atual','nav.help':'Ajuda','help.title':'Central de Ajuda','help.sub':'Tudo o que você precisa saber sobre o TreinoFire',
+
       },
     
     en:{
@@ -3589,6 +3625,7 @@ const ROUTES=[
   {match:/^#\/progress/,name:'progress'},
   {match:/^#\/records/,name:'records'},
   {match:/^#\/settings/,name:'settings'},
+  {match:/^#\/help/,name:'help'},
   {match:/^#\/backup/,name:'backup'},
   {match:/^#\/profile/,name:'profile'}
 ];
@@ -3618,10 +3655,11 @@ const NAV=[
   {sec:'nav.section.config',items:[
     {name:'profile',route:'#/profile',label:'nav.profile',icon:I.user},
     {name:'settings',route:'#/settings',label:'nav.settings',icon:I.body},
+    {name:'help',route:'#/help',label:'nav.help',icon:I.guide},
     {name:'backup',route:'#/backup',label:'nav.backup',icon:I.database}
   ]}
 ];
-const PAGE_TITLES={dashboard:['dash.title','dash.sub'],plans:['plans.title','plans.sub'],schedule:['sched.title','sched.sub'],log:['log.title','log.sub'],exercises:['ex.title','ex.sub'],progress:['prog.title','prog.sub'],records:['rec.title','rec.sub'],settings:['set.title','set.sub'],backup:['bk.title','bk.sub'],profile:['profile.title','profile.sub']};
+const PAGE_TITLES={dashboard:['dash.title','dash.sub'],plans:['plans.title','plans.sub'],schedule:['sched.title','sched.sub'],log:['log.title','log.sub'],exercises:['ex.title','ex.sub'],progress:['prog.title','prog.sub'],records:['rec.title','rec.sub'],settings:['set.title','set.sub'],backup:['bk.title','bk.sub'],profile:['profile.title','profile.sub'],help:['help.title','help.sub']};
 
 function renderRail(activeName){
   const rail=h('<aside class="rail"></aside>');
@@ -5632,14 +5670,14 @@ VIEWS.settings=function(root){
   const securityCard = h('<div class="card card-pad" style="margin-top:20px;"></div>');
   securityCard.appendChild(h('<div class="card-head"><div><div class="overline">🔒 SEGURANÇA DA CONTA</div><div class="card-sub">Gerencie seu acesso e dados de segurança</div></div></div>'));
   
-  const user = Auth.currentUser;
-  const createdAt = Auth.getUsers().find(u => u.email === user.email)?.createdAt || '';
-  const dateStr = createdAt ? fmtDate(createdAt.slice(0, 10), { day: 'numeric', month: 'long', year: 'numeric' }) : '-';
+  const user = Auth.currentUser || {};
+  const createdAt = (Auth.getUsers().find(u => u.email === user.email) || {}).createdAt;
+  const dateStr = createdAt ? fmtDate(createdAt.slice(0, 10), { day: 'numeric', month: 'long', year: 'numeric' }) : 'Não informado';
 
   const secBody = h('<div style="display:flex; flex-direction:column; gap:12px; margin-top:8px;"></div>');
   const secInfo = [
-    { l: 'Nome', v: user.name || '-' },
-    { l: 'E-mail', v: user.email },
+    { l: 'Nome', v: user.name || 'Não informado' },
+    { l: 'E-mail', v: user.email || 'Não informado' },
     { l: 'Atleta desde', v: dateStr }
   ];
   secInfo.forEach(it => {
@@ -5812,6 +5850,202 @@ function openSecurityModal() {
   const m = Modal.open(body, { title: 'Segurança da Conta', size: 'slim', footer: foot });
   close.onclick = m.close;
 }
+
+
+/* ============================================================= VIEW · HELP / FAQ ============================================================= */
+VIEWS.help = function(root) {
+  const wrap = h('<div class="help-layout"></div>');
+  
+  const intro = h('<div class="help-intro"><h2>' + esc(t('help.title')) + '</h2><p>' + esc(t('help.sub')) + '</p></div>');
+  wrap.appendChild(intro);
+
+  const accordion = h('<div class="accordion"></div>');
+  
+  const items = [
+    {
+      title: '1. Bem-vindo ao TreinoFire',
+      sub: 'O que é e como funciona o aplicativo',
+      icon: I.flame,
+      content: '<p>O <strong>TreinoFire</strong> é um assistente pessoal de musculação projetado para ser simples, rápido e totalmente independente. Ele foi desenvolvido para atletas que buscam registrar seus treinos com precisão sem distrações.</p>' +
+               '<p><strong>Principais diferenciais:</strong></p>' +
+               '<ul>' +
+                 '<li><strong>100% Offline:</strong> Uma vez baixado, o aplicativo não precisa de internet para funcionar.</li>' +
+                 '<li><strong>Privacidade Total:</strong> Todos os seus dados (treinos, medidas, fotos) ficam salvos exclusivamente no seu dispositivo.</li>' +
+                 '<li><strong>Arquivo Único:</strong> O sistema roda a partir de um único arquivo HTML, facilitando o transporte e uso em qualquer lugar.</li>' +
+               '</ul>'
+    },
+    {
+      title: '2. Primeiro Acesso',
+      sub: 'Login, cadastro e segurança da conta',
+      icon: I.user,
+      content: '<p>Para garantir que seus treinos fiquem isolados de outros usuários no mesmo dispositivo, utilizamos um sistema de contas locais.</p>' +
+               '<ul>' +
+                 '<li><strong>Criar conta:</strong> Informe seu nome, e-mail e defina uma senha forte.</li>' +
+                 '<li><strong>Pergunta Secreta:</strong> Crucial para a recuperação de senha. Escolha algo que só você saiba.</li>' +
+                 '<li><strong>Login:</strong> Utilize seu e-mail e senha para acessar seu perfil personalizado.</li>' +
+               '</ul>'
+    },
+    {
+      title: '3. Configuração Inicial (Onboarding)',
+      sub: 'Personalizando sua experiência',
+      icon: I.settings,
+      content: '<p>Ao entrar pela primeira vez, você passará por um assistente de 7 etapas:</p>' +
+               '<ul>' +
+                 '<li><strong>Informações pessoais:</strong> Idade, altura e peso para cálculos básicos.</li>' +
+                 '<li><strong>Experiência:</strong> Define o nível dos treinos recomendados.</li>' +
+                 '<li><strong>Objetivo:</strong> Hipertrofia, Força, Performance ou Condicionamento.</li>' +
+                 '<li><strong>Rotina:</strong> Dias disponíveis e tempo por sessão.</li>' +
+                 '<li><strong>Escolha do Plano:</strong> O sistema recomenda o melhor plano baseado nas suas respostas.</li>' +
+               '</ul>' +
+               '<div class="tip-box">Você pode refazer essa configuração a qualquer momento na tela <strong>Meu Perfil</strong>.</div>'
+    },
+    {
+      title: '4. Dashboard (Painel)',
+      sub: 'Sua visão geral de progresso',
+      icon: I.grid,
+      content: '<p>O Painel Inicial é sua central de comando:</p>' +
+               '<ul>' +
+                 '<li><strong>Estatísticas:</strong> Resumo de treinos na semana e volume total.</li>' +
+                 '<li><strong>Próximo Treino:</strong> Atalho rápido para o treino do dia.</li>' +
+                 '<li><strong>Mapa Muscular:</strong> Visualização dos músculos que serão trabalhados hoje.</li>' +
+                 '<li><strong>Evolução de Peso:</strong> Gráfico com tendência e previsão para as próximas semanas.</li>' +
+               '</ul>'
+    },
+    {
+      title: '5. Biblioteca de Exercícios',
+      sub: 'Explorando e criando exercícios',
+      icon: I.list,
+      content: '<p>A biblioteca contém centenas de exercícios oficiais com instruções e músculos alvo.</p>' +
+               '<ul>' +
+                 '<li><strong>Busca e Filtro:</strong> Encontre exercícios por nome, músculo ou equipamento.</li>' +
+                 '<li><strong>Novo Exercício:</strong> Clique no botão ➕ para cadastrar seus próprios movimentos personalizados.</li>' +
+                 '<li><strong>Favoritos:</strong> Marque seus exercícios preferidos para acesso rápido.</li>' +
+               '</ul>'
+    },
+    {
+      title: '6. Meus Planos',
+      sub: 'Gestão de treinamentos e periodização',
+      icon: I.library,
+      content: '<p>Aqui você gerencia sua estratégia de treino de longo prazo.</p>' +
+               '<ul>' +
+                 '<li><strong>Visualizar Plano:</strong> Veja todos os dias e exercícios do seu cronograma atual.</li>' +
+                 '<li><strong>Alterar Plano:</strong> Escolha entre dezenas de modelos profissionais (PPL, Full Body, Upper/Lower).</li>' +
+                 '<li><strong>Gerar Novo:</strong> Peça uma nova recomendação ao sistema baseada no seu perfil atualizado.</li>' +
+               '</ul>'
+    },
+    {
+      title: '7. Agenda Semanal',
+      sub: 'Organizando sua semana de treinos',
+      icon: I.calendar,
+      content: '<p>A agenda permite que você visualize e organize quais dias da semana você treinará cada parte do seu plano.</p>' +
+               '<p><strong>Como usar:</strong> Defina quais treinos do seu plano (Ex: Treino A, B, C) correspondem a quais dias da semana. Isso alimentará o "Próximo Treino" no Dashboard.</p>'
+    },
+    {
+      title: '8. Diário de Treino',
+      sub: 'Registrando suas sessões reais',
+      icon: I.clipboard,
+      content: '<p>É onde a mágica acontece. Durante o treino:</p>' +
+               '<ul>' +
+                 '<li><strong>Séries e Reps:</strong> Registre cada série completada.</li>' +
+                 '<li><strong>Carga:</strong> Informe o peso utilizado (o sistema lembrará do último treino).</li>' +
+                 '<li><strong>RPE / Esforço:</strong> Opcionalmente registre o quão difícil foi a série.</li>' +
+                 '<li><strong>Descanso:</strong> Utilize o cronômetro integrado entre as séries.</li>' +
+               '</ul>'
+    },
+    {
+      title: '9. Progresso e Evolução',
+      sub: 'Gráficos e métricas de desempenho',
+      icon: I.chart,
+      content: '<p>Acompanhe sua jornada através de dados concretos:</p>' +
+               '<ul>' +
+                 '<li><strong>Volume Total:</strong> Veja se você está aumentando a carga total de trabalho ao longo do tempo.</li>' +
+                 '<li><strong>Frequência:</strong> Acompanhe sua consistência semanal.</li>' +
+                 '<li><strong>1RM Estimado:</strong> Veja sua evolução de força máxima sem precisar testá-la diretamente.</li>' +
+               '</ul>'
+    },
+    {
+      title: '10. Recordes (PRs)',
+      sub: 'Suas melhores marcas históricas',
+      icon: I.trophy,
+      content: '<p>O TreinoFire monitora automaticamente suas "Personal Records" (PRs).</p>' +
+               '<p>Sempre que você bater um recorde de carga ou de repetições em um exercício, você receberá um destaque e o recorde ficará salvo na sua galeria de troféus.</p>'
+    },
+    {
+      title: '11. Perfil e Segurança',
+      sub: 'Gestão da sua conta de atleta',
+      icon: I.target,
+      content: '<p>Na tela <strong>Meu Perfil</strong> você pode:</p>' +
+               '<ul>' +
+                 '<li><strong>Editar Dados:</strong> Atualizar peso, altura e nome.</li>' +
+                 '<li><strong>Segurança:</strong> Alterar sua senha e sua pergunta secreta de recuperação.</li>' +
+                 '<li><strong>Foto:</strong> Adicionar uma foto de perfil (salva localmente).</li>' +
+               '</ul>'
+    },
+    {
+      title: '12. Backup e Importação',
+      sub: 'Protegendo seu histórico de treino',
+      icon: I.database,
+      content: '<p>Como os dados ficam apenas no seu navegador, se você limpar o cache ou trocar de dispositivo, poderá perdê-los.</p>' +
+               '<div class="tip-box"><strong>DICA DE OURO:</strong> Vá em "Exportar / Backup" toda semana e baixe seu arquivo de backup. É a única forma de garantir que seu histórico de anos nunca seja perdido.</div>'
+    },
+    {
+      title: '13. Download do Aplicativo',
+      sub: 'Gerando sua cópia offline',
+      icon: I.download,
+      content: '<p>O TreinoFire é uma aplicação web progressiva. O proprietário do sistema possui ferramentas administrativas para gerar uma cópia "standalone" (arquivo único) atualizada do aplicativo.</p>' +
+               '<p>Esse arquivo pode ser enviado para o seu celular ou computador e funcionará permanentemente sem internet.</p>'
+    },
+    {
+      title: '14. Privacidade e Dados',
+      sub: 'Compromisso com sua segurança',
+      icon: I.lock,
+      content: '<p>Nenhum dado pessoal, foto ou registro de treino sai do seu dispositivo. O TreinoFire não possui "nuvem" por opção de design, garantindo que você seja o único dono das suas informações.</p>'
+    },
+    {
+      title: '15. Dicas de Uso',
+      sub: 'Como extrair o máximo do sistema',
+      icon: I.zap,
+      content: '<ul class="check-list">' +
+                 '<li>Mantenha seu backup atualizado semanalmente;</li>' +
+                 '<li>Registre todos os treinos, inclusive os dias de "falta";</li>' +
+                 '<li>Atualize seu peso corporal pelo menos uma vez por semana;</li>' +
+                 '<li>Revise seu plano quando sentir que estagnou nos resultados;</li>' +
+                 '<li>Utilize o campo de observações para anotar sensações de dor ou cansaço.</li>' +
+               '</ul>'
+    }
+  ];
+
+  items.forEach(it => {
+    const item = h('<div class="accordion-item"></div>');
+    const header = h('<button class="accordion-header"></button>');
+    
+    header.appendChild(h('<div class="accordion-icon">' + it.icon + '</div>'));
+    
+    const titleWrap = h('<div class="accordion-title-wrap"></div>');
+    titleWrap.appendChild(h('<div class="accordion-title">' + esc(it.title) + '</div>'));
+    titleWrap.appendChild(h('<div class="accordion-sub">' + esc(it.sub) + '</div>'));
+    header.appendChild(titleWrap);
+    
+    header.appendChild(h('<div class="accordion-chevron">' + I.chevR + '</div>'));
+    
+    const content = h('<div class="accordion-content"></div>');
+    content.appendChild(h('<div class="accordion-inner">' + it.content + '</div>'));
+    
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      // Close others
+      $$('.accordion-item', accordion).forEach(el => el.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+    
+    item.appendChild(header);
+    item.appendChild(content);
+    accordion.appendChild(item);
+  });
+
+  wrap.appendChild(accordion);
+  root.appendChild(wrap);
+};
 
 /* ============================================================= VIEW · EXPORT / BACKUP ============================================================= */
 VIEWS.backup=function(root){
